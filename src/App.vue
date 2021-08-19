@@ -135,6 +135,7 @@ export default {
     this.getSchedules();
   },
   methods: {
+    //mobile device detection
     isMobile() {
       if (
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -175,12 +176,12 @@ export default {
       );
     },
     retire(idx, schedule_id) {
-      let d = this.schedules[idx];
-      d.isRetired = true;
+      let submitted_data = this.schedules[idx];
+      submitted_data.isRetired = true;
       axios({
         method: 'PUT',
         url: 'http://localhost:3000/schedules/'+schedule_id,
-        data: JSON.stringify(d),
+        data: JSON.stringify(submitted_data),
         headers: {
           'Content-Type': 'application/json'
         }
@@ -213,12 +214,12 @@ export default {
       );
     },
     restore(idx, schedule_id) {
-      let d = this.schedules[idx];
-      d.isRetired = false;
+      let submitted_data = this.schedules[idx];
+      submitted_data.isRetired = false;
       axios({
         method: 'PUT',
         url: 'http://localhost:3000/schedules/'+schedule_id,
-        data: JSON.stringify(d),
+        data: JSON.stringify(submitted_data),
         headers: {
           'Content-Type': 'application/json'
         }
